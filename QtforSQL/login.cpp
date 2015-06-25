@@ -4,8 +4,8 @@ Login::Login(QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(tr("中学生档案管理系统登录界面"));
-    setMinimumSize(350,175);    //设置固定大小
-    setMaximumSize(350,175);
+    setMinimumSize(300,175);    //设置固定大小
+    setMaximumSize(300,175);
 
     QPixmap pixmap(":/aa.jpg");
     QPalette palette;
@@ -28,10 +28,10 @@ Login::Login(QWidget *parent)
     pwdEdit->setStyleSheet("border: 1px groove gray; border-radius: 2px; background-color: rgba(255, 193, 245, 0%); ");
 
     ackBtn=new QPushButton;
-    ackBtn->setText(tr("确认登录"));
+    ackBtn->setText(tr("确认"));
     ackBtn->setStyleSheet("background-color:#E6E6FA;border: 1px solid #AAB4C4; width: 40px;height:20px;padding:0 0px;border-radius:1px;");
     cleanBtn=new QPushButton;
-    cleanBtn->setText(tr("清空登录"));
+    cleanBtn->setText(tr("清空"));
     cleanBtn->setStyleSheet("background-color:#E6E6FA;border: 1px solid #AAB4C4; width: 40px;height:20px;padding:0 0px;border-radius:1px;");
     quitBtn=new QPushButton;
     quitBtn->setText(tr("退出"));

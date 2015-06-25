@@ -17,13 +17,21 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     contactsql.cpp \
-    login.cpp
+    login.cpp\
+    sturegister.cpp\
+    classregister.cpp\
+    courseregister.cpp\
+    markregister.cpp
 
 HEADERS  += mainwindow.h \
     contactsql.h \
     login.h \
     ui_login.h \
-    ui_mainwindow.h
+    ui_mainwindow.h\
+    sturegister.h\
+    classregister.h\
+    courseregister.h\
+    markregister.h
 
 FORMS    += mainwindow.ui \
     login.ui

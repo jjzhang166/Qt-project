@@ -1,8 +1,8 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 
-#include <QLineEdit>
 #include <QDialog>
+#include <QLineEdit>
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
