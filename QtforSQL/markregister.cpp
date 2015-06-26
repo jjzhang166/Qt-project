@@ -4,9 +4,7 @@ markRegister::markRegister(QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(tr("添加成绩界面"));
-    //setMinimumSize(350,175);    //设置固定大小
-    //setMaximumSize(350,175);
-    //this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowMinMaxButtonsHint);
+    this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 
     SnoLabel = new QLabel;
     SnoLabel->setText(tr("学  号:"));

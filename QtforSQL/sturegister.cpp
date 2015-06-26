@@ -4,8 +4,7 @@ stuRegister::stuRegister(QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(tr("学生注册界面"));
-    //setMinimumSize(350,175);    //设置固定大小
-    //setMaximumSize(350,175);
+    this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 
     SnoLabel = new QLabel;
     SnoLabel->setText(tr("学号:"));

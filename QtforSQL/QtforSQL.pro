@@ -21,20 +21,20 @@ SOURCES += main.cpp\
     sturegister.cpp\
     classregister.cpp\
     courseregister.cpp\
-    markregister.cpp
+    markregister.cpp\
+    mainform.cpp
 
 HEADERS  += mainwindow.h \
     contactsql.h \
     login.h \
-    ui_login.h \
     ui_mainwindow.h\
     sturegister.h\
     classregister.h\
     courseregister.h\
-    markregister.h
+    markregister.h\
+    mainform.h
 
-FORMS    += mainwindow.ui \
-    login.ui
+FORMS    += mainwindow.ui
 
 RESOURCES += \
     image/image.qrc

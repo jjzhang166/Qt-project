@@ -4,16 +4,19 @@
 #include "classregister.h"
 #include "courseregister.h"
 #include "markregister.h"
+#include "mainform.h"
+
 #include "login.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     //Login l;
+    MainWindow l;
     //courseRegister l;
     //stuRegister l;
     //classRegister l;
-    markRegister l;
+    //markRegister l;
     l.show();
     return a.exec();
 }

@@ -4,8 +4,9 @@ Login::Login(QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(tr("中学生档案管理系统登录界面"));
-    setMinimumSize(300,175);    //设置固定大小
-    setMaximumSize(300,175);
+
+    setMinimumSize(278,177);    //设置固定大小
+    setMaximumSize(278,177);
 
     QPixmap pixmap(":/aa.jpg");
     QPalette palette;
@@ -64,6 +65,7 @@ Login::Login(QWidget *parent)
     connect(ackBtn,SIGNAL(clicked()), this, SLOT(onAckBtn()));
     connect(cleanBtn,SIGNAL(clicked()), this, SLOT(onCleanBtn()));
     connect(quitBtn,SIGNAL(clicked()), this, SLOT(onQuitBtn()));
+
 }
 
 Login::~Login()

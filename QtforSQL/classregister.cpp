@@ -4,8 +4,7 @@ classRegister::classRegister(QWidget *parent)
     : QWidget(parent)
 {
     setWindowTitle(tr("班级注册界面"));
-    //setMinimumSize(350,175);    //设置固定大小
-    //setMaximumSize(350,175);
+    this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 
     CnumLabel = new QLabel;
     CnumLabel->setText(tr("班号:"));

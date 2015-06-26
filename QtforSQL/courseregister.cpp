@@ -4,8 +4,7 @@ courseRegister::courseRegister(QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(tr("添加课程界面"));
-    //setMinimumSize(350,175);    //设置固定大小
-    //setMaximumSize(350,175);
+    this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 
     CnoLabel = new QLabel;
     CnoLabel->setText(tr("课程号:"));
