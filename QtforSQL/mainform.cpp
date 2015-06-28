@@ -7,31 +7,31 @@ mainform::mainform(QWidget *parent)
 
     setWindowTitle(tr("中学生档案管理系统界面"));
     setFixedSize(620,420);
-    this->setStyleSheet("border-color：rgb(3,168,158)");
     //this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
+
 
     //"关于界面"
     textStr="                  中学生档案管理系统\n\n         ";
     textStr.append("           作者：徐秀天\n\n");
     textStr.append("             工具：Qt SDK and Qt Creator \n");
-    //textStr.append("作者：徐秀天\n");
-    //textStr.append("作者：徐秀天\n");
-    //textStr.append("作者：徐秀天\n");
 
     vLineLabel = new QLabel;
     vLineLabel->setFrameStyle(QFrame::VLine | QFrame::Raised);
+    hLineLabel = new QLabel;
+    hLineLabel->setFrameStyle(QFrame::HLine | QFrame::Raised);
     pictureLabel = new QLabel;
     pictureLabel->setFrameStyle(QFrame::WinPanel | QFrame::Raised);
     QPixmap pix(":/1.jpg");
     pictureLabel->setPixmap(pix);
     textLabel = new QLabel;
-    textLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Raised);
+    textLabel->setFrameStyle(QFrame::Box | QFrame::Raised);
     textLabel->setWordWrap(true);
     textLabel->setText(textStr);
 
     quitBtn = new QPushButton;
     quitBtn->setText(tr("退出"));
-    quitBtn->setStyleSheet("background-color:#E6E6FA;border: 1px solid #AAB4C4; width: 40px;height:20px;padding:0 0px;border-radius:1px;");
+    quitBtn->setStyleSheet("background-color:#E6E6FA;border: 1px solid #AAB4C4; width: 40px;height:40px;padding:0 0px;border-radius:2px;");
+
     connect(quitBtn,SIGNAL(clicked()),this,SLOT(onQuitBtn()));
 
     aboutLVBoxLayout = new QVBoxLayout;
@@ -39,7 +39,11 @@ mainform::mainform(QWidget *parent)
     aboutLVBoxLayout->addStretch(1);
     aboutRVBoxLayout = new QVBoxLayout;
     aboutRVBoxLayout->addWidget(textLabel);
+    aboutRVBoxLayout->addWidget(hLineLabel);
     aboutRVBoxLayout->addWidget(quitBtn);
+    aboutRVBoxLayout->setStretch(0,9);
+    aboutRVBoxLayout->setStretch(1,2);
+    aboutRVBoxLayout->setStretch(2,2);
     aboutHBoxLayout = new QHBoxLayout;
     aboutHBoxLayout->addLayout(aboutLVBoxLayout);
     aboutHBoxLayout->addWidget(vLineLabel);
@@ -50,6 +54,7 @@ mainform::mainform(QWidget *parent)
 
     aboutWidge = new QWidget;
     aboutWidge->setLayout(aboutHBoxLayout);
+
 
     //"添加界面"
     stuAddBtn = new QPushButton;
@@ -81,7 +86,7 @@ mainform::mainform(QWidget *parent)
 
     groupBox = new QGroupBox;
     groupBox->setTitle(tr("'添加'界面"));
-    groupBox->setStyleSheet("height:300;width:140");
+    groupBox->setStyleSheet("height:300;width:250");
     groupBox->setLayout(groupLayout);
 
     connect(stuAddBtn,SIGNAL(clicked()),this,SLOT(showStuDlg()));
@@ -91,9 +96,11 @@ mainform::mainform(QWidget *parent)
     connect(familyAddBtn,SIGNAL(clicked()),this,SLOT(showFamilyDlg()));
 
     appendWidget = new QWidget;
-    addLayout = new QVBoxLayout;
+    addLayout = new QHBoxLayout;
     addLayout->addWidget(groupBox);
+    addLayout->addStretch(1);
     appendWidget->setLayout(addLayout);
+
 
     //"查找界面"
     inputLabel =new QLabel;
@@ -142,11 +149,55 @@ mainform::mainform(QWidget *parent)
     addVBoxLayout->addWidget(tView);
     widge->setLayout(addVBoxLayout);
 
+
+    //"删除*修改 界面"
+    typeCombo2=new QComboBox;
+    typeCombo2->addItem(tr("课程"));
+    typeCombo2->addItem(tr("家庭信息"));
+    typeCombo2->addItem(tr("班级"));
+    typeCombo2->addItem(tr("成绩"));
+    typeCombo2->addItem(tr("学生"));
+    itemCombo2=new QComboBox;
+    itemCombo2->addItem(tr("课程号"));
+    itemCombo2->addItem(tr("课程名"));
+    itemCombo2->addItem(tr("任课教师"));
+    connect(typeCombo2,SIGNAL(currentIndexChanged(int)),this,SLOT(OnComboIndexChanged2()));
+
+    deleteAckBtn = new QPushButton;
+    deleteAckBtn->setText(tr("删除"));
+    deleteAckBtn->setStyleSheet("background-color:#E6E6FA;border: 1px solid #AAB4C4; width: 40px;height:20px;padding:0 0px;border-radius:1px;");
+    connect(deleteAckBtn,SIGNAL(clicked()),this,SLOT(delectSql()));
+    conditionLabel = new QLabel;
+    conditionLabel->setText(tr("删除条件："));
+    conditionLabel->setAlignment(Qt::AlignCenter);
+    conditionEdit = new QLineEdit;
+
+    deleteWidget = new QWidget;
+    topGridLayout = new QGridLayout;
+    topGridLayout->addWidget(typeCombo2,0,0,1,1);
+    topGridLayout->addWidget(itemCombo2,0,1,1,1);
+    topGridLayout->addWidget(deleteAckBtn,0,2,2,1);
+    topGridLayout->addWidget(conditionLabel,1,0,1,1);
+    topGridLayout->addWidget(conditionEdit,1,1,1,1);
+    topGridLayout->setColumnStretch(0,1);
+    topGridLayout->setColumnStretch(1,1);
+    topGridLayout->setColumnStretch(2,1);
+    deleteHLineLabel = new QLabel;
+    deleteHLineLabel->setFrameStyle(QFrame::HLine | QFrame::Raised);
+    deleteVBoxLayout = new QVBoxLayout;
+    deleteVBoxLayout->addLayout(topGridLayout);
+    deleteVBoxLayout->addWidget(deleteHLineLabel);
+    deleteVBoxLayout->setStretch(0,2);
+    deleteVBoxLayout->setStretch(1,1);
+    deleteVBoxLayout->addStretch(1);
+    deleteWidget->setLayout(deleteVBoxLayout);
+
     //"总界面按QToolBox布局"//
     toolBox = new QToolBox(this);
     toolBox->layout()->setSpacing(5);
     toolBox->addItem(widge,"查找");
     toolBox->addItem(appendWidget,"添加");
+    toolBox->addItem(deleteWidget,"删除*修改");
     toolBox->addItem(aboutWidge,"关于");
 
     gridLayout = new QGridLayout;
@@ -189,6 +240,14 @@ void mainform::onQuitBtn(){
     this->close();
 }
 
+void mainform::delectSql(){
+    QString str1,str2,str3;
+    str1 = cnToen(typeCombo2->currentText());
+    str2 = cnToen(itemCombo2->currentText());
+    str3 = conditionEdit->text();
+    sql.deleteFromSql(str1,str2,str3);
+}
+
 void mainform::selectSql(){
     QString str1,str2,str3;
     str1 = cnToen(typeCombo->currentText());
@@ -204,6 +263,49 @@ void mainform::selectAll()
     tView->clearFocus();
     sql.selectAllInf(typeCombo->currentIndex());
     tView->setModel(&sql.model);
+}
+
+void mainform::OnComboIndexChanged2(){
+    int i = typeCombo2->currentIndex();
+    itemCombo2->clear();
+    switch(i){
+    case 0:
+        itemCombo2->addItem(tr("课程号"));
+        itemCombo2->addItem(tr("课程名"));
+        itemCombo2->addItem(tr("任课教师"));
+        break;
+    case 1:
+        itemCombo2->addItem(tr("家庭信息号"));
+        itemCombo2->addItem(tr("家属姓名"));
+        itemCombo2->addItem(tr("联系电话"));
+        itemCombo2->addItem(tr("与本人关系"));
+        itemCombo2->addItem(tr("学号"));
+        break;
+    case 3:
+        itemCombo2->addItem(tr("学号"));
+        itemCombo2->addItem(tr("课程号"));
+        itemCombo2->addItem(tr("学期"));
+        itemCombo2->addItem(tr("成绩"));
+        break;
+    case 2:
+        itemCombo2->addItem(tr("班号"));
+        itemCombo2->addItem(tr("所在届"));
+        itemCombo2->addItem(tr("年级"));
+        itemCombo2->addItem(tr("班主任"));
+        itemCombo2->addItem(tr("人数"));
+        break;
+    case 4:
+        itemCombo2->addItem(tr("学号"));
+        itemCombo2->addItem(tr("学生姓名"));
+        itemCombo2->addItem(tr("性别"));
+        itemCombo2->addItem(tr("出生日期"));
+        itemCombo2->addItem(tr("民族"));
+        itemCombo2->addItem(tr("家庭住址"));
+        itemCombo2->addItem(tr("手机号码"));
+        itemCombo2->addItem(tr("毕业去向"));
+        itemCombo2->addItem(tr("班号"));
+        break;
+    }
 }
 
 void mainform::OnComboIndexChanged(){
@@ -226,7 +328,7 @@ void mainform::OnComboIndexChanged(){
         itemCombo->addItem(tr("学号"));
         itemCombo->addItem(tr("课程号"));
         itemCombo->addItem(tr("学期"));
-        itemCombo->addItem(tr("成绩"));
+        itemCombo->addItem(tr("分数"));
         break;
     case 2:
         itemCombo->addItem(tr("班号"));
@@ -267,7 +369,7 @@ QString mainform::cnToen(QString str){
     else if(str=="学期")
         return "Msemester";
     else if(str=="成绩")
-        return "Mpoint";
+        return "Mark";
     else if(str=="班号")
         return "Gno";
     else if(str=="所在届")
@@ -302,7 +404,7 @@ QString mainform::cnToen(QString str){
         return "Family";
     else if(str=="班级")
         return "Grade";
-    else if(str=="成绩")
-        return "Mark";
+    else if(str=="分数")
+        return "Mpoint";
     else return "";
 }

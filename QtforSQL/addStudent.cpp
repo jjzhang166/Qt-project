@@ -35,7 +35,7 @@ addStudent::addStudent(QWidget *parent)
     SnationEdit->setText(tr(""));
 
     SphoneLabel = new QLabel;
-    SphoneLabel->setText(tr("联系电话:"));
+    SphoneLabel->setText(tr("手机号码:"));
     SphoneEdit = new QLineEdit;
     SphoneEdit->setText(tr(""));
 

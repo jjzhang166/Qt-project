@@ -26,6 +26,62 @@ bool LinkSql::isLinkToSql(){
     return true;
 }
 
+void LinkSql::updateFromSql(QString str1,QString str2,QString str3){
+    QSqlQuery query(db);
+    QString s = "'";
+    s.append(str3);
+    s.append("'");
+    QString update = "select " + str2 + " from " + str1 + " where " + str2 + " = " + s;
+    qDebug() << update;
+    query.prepare(update);
+    //query.bindValue(":sname",name);
+    query.exec();
+    qDebug() << query.lastQuery();
+    if(!query.next()){
+        QMessageBox msg;
+        msg.setText("This data is not in our Table!So you can't Update!");
+        msg.exec();
+        return;
+    }
+    QString updateStr;
+    updateStr = "update " + str1 + "set " + str2 + " = " + s;
+    query.prepare(updateStr);
+    //query.bindValue(":sname",str);
+    if(query.exec()){
+        qDebug() << "succeed";
+    }
+    else{
+        qDebug() << "failed";
+        QMessageBox msg;
+        msg.setText("Update is failed!");
+        msg.exec();
+    }
+    return;
+}
+
+void LinkSql::deleteFromSql(QString str1,QString str2,QString str3){
+    QSqlQuery query(db);
+    QString s = "'";
+    s.append(str3);
+    s.append("'");
+    QString delStr;
+    delStr = "delete from " + str1 + " where " + str2 + " = " + s;
+    query.prepare(delStr);
+    if(query.exec()){
+        qDebug() << delStr + " \n succeed ";
+        QMessageBox msg;
+        msg.setText(delStr + "\n and delete is succeed!");
+        msg.exec();
+    }
+    else{
+        qDebug() << "failed";
+        QMessageBox msg;
+        msg.setText(delStr + "\n and delete is failed!");
+        msg.exec();
+    }
+    return;
+}
+
 QSqlQuery LinkSql::selectFromSql(QString str1,QString str2,QString str3){
     QSqlQuery query(db);
     QString s;
@@ -40,12 +96,15 @@ QSqlQuery LinkSql::selectFromSql(QString str1,QString str2,QString str3){
     if(query.exec())
     {
         qDebug() << "succeed";
+        QMessageBox msg;
+        msg.setText(s + "\n and select is succeed!");
+        msg.exec();
     }
     else
     {
         qDebug() << "failed";
         QMessageBox msg;
-        msg.setText("Select is failed!");
+        msg.setText(s + "\n and select is failed!");
         msg.exec();
     }
     return query;
@@ -72,8 +131,7 @@ void LinkSql::selectAllInf(int i){
 
 }
 
-QSqlQuery LinkSql::addToCourse(QStringList list)
-{
+QSqlQuery LinkSql::addToCourse(QStringList list){
     QSqlQuery query(db);
     QString Cno = list.at(0);
     query.prepare("select sname from Course where Cno = :Cno");

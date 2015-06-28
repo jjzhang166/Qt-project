@@ -36,7 +36,11 @@ private:
     QLabel *pictureLabel;
     QLabel *textLabel;
     QLabel *vLineLabel;
+    QLabel *hLineLabel;
     QLineEdit *inputEdit;
+    QLabel *conditionLabel;
+    QLineEdit *conditionEdit;
+    QLabel *deleteHLineLabel;
 
     QPushButton *gradeAddBtn;
     QPushButton *stuAddBtn;
@@ -46,15 +50,19 @@ private:
     QPushButton *searchBtn;
     QPushButton *allSearchBtn;
     QPushButton *quitBtn;
+    QPushButton *deleteAckBtn;
 
     QGroupBox *groupBox;
 
     QComboBox *typeCombo;
+    QComboBox *typeCombo2;
     QComboBox *itemCombo;
+    QComboBox *itemCombo2;
 
     QToolBox *toolBox;
 
     QWidget *widge;
+    QWidget *deleteWidget;
     QWidget *appendWidget;
     QWidget *aboutWidge;
 
@@ -63,7 +71,7 @@ private:
     QString textStr;
 
     QVBoxLayout *groupLayout;
-    QVBoxLayout *addLayout;
+    QHBoxLayout *addLayout;
     QHBoxLayout *hboxLayout;
     QGridLayout *gridLayout;
     QGridLayout *selectGridLayout2;
@@ -71,6 +79,9 @@ private:
     QVBoxLayout *aboutLVBoxLayout;
     QVBoxLayout *aboutRVBoxLayout;
     QHBoxLayout *aboutHBoxLayout;
+    QVBoxLayout *deleteVBoxLayout;
+    QGridLayout *topGridLayout;
+    QGridLayout *downGridLayout;
 
     addStudent *stuDlg;
     addMark *markDlg;
@@ -86,8 +97,10 @@ private slots:
     void showFamilyDlg();
     void onQuitBtn();
     void OnComboIndexChanged();
+    void OnComboIndexChanged2();
     void selectAll();
     void selectSql();
+    void delectSql();
     QString cnToen(QString str);
 };
 

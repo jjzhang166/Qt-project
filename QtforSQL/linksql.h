@@ -17,21 +17,17 @@ public:
     bool isLinkToSql();
     void selectAllInf(int i);
 
+    void updateFromSql(QString str1,QString str2,QString str3);
+    void deleteFromSql(QString str1,QString str2,QString str3);
     QSqlQuery selectFromSql(QString str1,QString str2,QString str3);
     QSqlQuery selectfromContact(QString str);
     QSqlQuery selectfromGrade(QString str);
-
 
     QSqlQuery addToStudent(QStringList list);
     QSqlQuery addToCourse(QStringList list);
     QSqlQuery addToMark(QStringList list);
     QSqlQuery addToFamily(QStringList list);
     QSqlQuery addToGrade(QStringList list);
-
-    //void changeStudent(QString str1,QString str2);
-
-    void deletesomeone(QString str);
-
 
 public:
     QSqlQueryModel model;

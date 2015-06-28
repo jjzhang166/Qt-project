@@ -19,7 +19,7 @@ addMark::addMark(QWidget *parent)
     CnoEdit->setText(tr(""));
 
     MpointLabel = new QLabel;
-    MpointLabel->setText(tr("成  绩:"));
+    MpointLabel->setText(tr("分  数:"));
     MpointEdit = new QLineEdit;
     MpointEdit->setText(tr(""));
 

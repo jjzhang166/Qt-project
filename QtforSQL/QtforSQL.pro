@@ -45,6 +45,4 @@ RESOURCES += \
 
 OTHER_FILES +=
 
-DISTFILES += \
-    image/1.jpg \
-    image/2.jpeg
+DISTFILES +=

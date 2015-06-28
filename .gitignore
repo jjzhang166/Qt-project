@@ -17,3 +17,5 @@ Makefile*
 untitled*/
 *.pro.user
 *.autosave
+ui_*
+*.autosave
