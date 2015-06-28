@@ -1,8 +1,10 @@
-#include "courseregister.h"
+#include "addCourse.h"
 
-courseRegister::courseRegister(QWidget *parent)
+addCourse::addCourse(QWidget *parent)
     : QDialog(parent)
 {
+    sql.isLinkToSql();
+
     setWindowTitle(tr("添加课程界面"));
     this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 
@@ -27,6 +29,9 @@ courseRegister::courseRegister(QWidget *parent)
     quitBtn=new QPushButton;
     quitBtn->setText(tr("退出"));
     quitBtn->setStyleSheet("background-color:#E6E6FA;border: 1px solid #AAB4C4; width: 40px;height:20px;padding:0 0px;border-radius:1px;");
+    cleanBtn=new QPushButton;
+    cleanBtn->setText(tr("清空"));
+    cleanBtn->setStyleSheet("background-color:#E6E6FA;border: 1px solid #AAB4C4; width: 40px;height:20px;padding:0 0px;border-radius:1px;");
 
     gridLayout = new QGridLayout;
     gridLayout->addWidget(CnoLabel,0,0);
@@ -35,13 +40,44 @@ courseRegister::courseRegister(QWidget *parent)
     gridLayout->addWidget(CnameEdit,1,1);
     gridLayout->addWidget(CteacherLabel,2,0);
     gridLayout->addWidget(CteacherEdit,2,1);
-    gridLayout->addWidget(quitBtn,5,0);
+    gridLayout->addWidget(cleanBtn,5,0);
     gridLayout->addWidget(ackBtn,5,1);
+    gridLayout->addWidget(quitBtn,5,2);
 
     this->setLayout(gridLayout);
+
+    connect(ackBtn,SIGNAL(clicked()), this, SLOT(onAckBtn()));
+    connect(quitBtn,SIGNAL(clicked()), this, SLOT(onQuitBtn()));
+    connect(cleanBtn,SIGNAL(clicked()), this, SLOT(onCleanBtn()));
 }
 
-courseRegister::~courseRegister()
+addCourse::~addCourse()
 {
 
+}
+
+void addCourse::onQuitBtn(){
+    this->close();
+}
+
+void addCourse::onCleanBtn(){
+    CnoEdit->clear();
+    CnameEdit->clear();
+    CteacherEdit->clear();
+}
+
+void addCourse::onAckBtn(){
+    QStringList list;
+    if(CnoEdit->text().isEmpty()||CnameEdit->text().isEmpty()||CteacherEdit->text().isEmpty()){
+        QMessageBox msg;
+        msg.setText("Please enter the whole information!");
+        msg.exec();
+        return;
+    }
+    QString str1,str2,str3;
+    str1 = CnoEdit ->text();
+    str2 = CnameEdit ->text();
+    str3 = CteacherEdit ->text();
+    list<<str1<<str2<<str3;
+    query=sql.addToCourse(list);
 }

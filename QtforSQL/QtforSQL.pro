@@ -15,24 +15,28 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
+    mainwindow.cpp \
     contactsql.cpp \
     login.cpp\
-    sturegister.cpp\
-    classregister.cpp\
-    courseregister.cpp\
-    markregister.cpp\
-    mainform.cpp
+    mainform.cpp \
+    addMark.cpp \
+    addStudent.cpp \
+    linksql.cpp \
+    addCourse.cpp \
+    addGrade.cpp \
+    addFamily.cpp
 
 HEADERS  += mainwindow.h \
     contactsql.h \
     login.h \
     ui_mainwindow.h\
-    sturegister.h\
-    classregister.h\
-    courseregister.h\
-    markregister.h\
-    mainform.h
+    mainform.h \
+    addCourse.h \
+    addMark.h \
+    addStudent.h \
+    linksql.h \
+    addGrade.h \
+    addFamily.h
 
 FORMS    += mainwindow.ui
 
@@ -40,3 +44,7 @@ RESOURCES += \
     image/image.qrc
 
 OTHER_FILES +=
+
+DISTFILES += \
+    image/1.jpg \
+    image/2.jpeg

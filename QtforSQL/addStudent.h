@@ -1,50 +1,55 @@
-#ifndef STUREGISTER_H
-#define STUREGISTER_H
+#ifndef ADDSTUDENT_H
+#define ADDSTUDENT_H
 
 #include <QDialog>
 #include <QLineEdit>
 #include <QLabel>
 #include <QPushButton>
-//#include <QVBoxLayout>
-//#include <QHBoxLayout>
 #include <QGridLayout>
-#include <QSpacerItem>
 #include <QMessageBox>
-#include <Qstring>
 #include <QComboBox>
 
-class stuRegister : public QDialog
+#include "linksql.h"
+
+class addStudent : public QDialog
 {
     Q_OBJECT
 
 public:
-    stuRegister(QWidget *parent = 0);
-    ~stuRegister();
+    addStudent(QWidget *parent = 0);
+    ~addStudent();
+    LinkSql sql;
+    QSqlQuery query;
 private:
-    QLabel *SnameLabel;
     QLabel *SnoLabel;
+    QLabel *SnameLabel;
     QLabel *SsexLabel;
     QLabel *SdateLabel;
     QLabel *SnationLabel;
     QLabel *SphoneLabel;
     QLabel *SaddressLabel;
-    QLabel *CnumLabel;
+    QLabel *SgraduateLabel;
     QLabel *GnoLabel;
 
-    QLineEdit *SnameEdit;
     QLineEdit *SnoEdit;
+    QLineEdit *SnameEdit;
     QComboBox *SsexComboBox;
     QLineEdit *SdateEdit;
     QLineEdit *SnationEdit;
     QLineEdit *SphoneEdit;
     QLineEdit *SaddressEdit;
-    QLineEdit *CnumEdit;
+    QLineEdit *SgraduateEdit;
     QLineEdit *GnoEdit;
 
     QPushButton *ackBtn;
+    QPushButton *cleanBtn;
     QPushButton *quitBtn;
 
     QGridLayout *gridLayout;
+private slots:
+    void onAckBtn();
+    void onQuitBtn();
+    void onCleanBtn();
 };
 
-#endif // STUREGISTER_H
+#endif // ADDSTUDENT_H

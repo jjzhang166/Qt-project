@@ -33,13 +33,16 @@ private:
     QLineEdit *userEdit;
     QLabel *pwdLabel;
     QLineEdit *pwdEdit;
+
     QPushButton *ackBtn;
     QPushButton *cleanBtn;
     QPushButton *quitBtn;
+
     QHBoxLayout *hLayout1;
     QHBoxLayout *hLayout2;
     QHBoxLayout *hLayout3;
     QVBoxLayout *vLayout;
+
     QSpacerItem * hSpacer1;
     QSpacerItem * hSpacer2;
 };

@@ -1,24 +1,25 @@
-#ifndef MARKREGISTER_H
-#define MARKREGISTER_H
+#ifndef ADDMARK_H
+#define ADDMARK_H
 
 #include <QDialog>
 #include <QLineEdit>
 #include <QLabel>
 #include <QPushButton>
-//#include <QVBoxLayout>
-//#include <QHBoxLayout>
 #include <QGridLayout>
-//#include <QSpacerItem>
 #include <QMessageBox>
-//#include <Qstring>
+#include <QComboBox>
 
-class markRegister : public QDialog
+#include "linksql.h"
+
+class addMark : public QDialog
 {
     Q_OBJECT
 
 public:
-    markRegister(QWidget *parent = 0);
-    ~markRegister();
+    addMark(QWidget *parent = 0);
+    ~addMark();
+    LinkSql sql;
+    QSqlQuery query;
 private:
     QLabel *CnoLabel;
     QLabel *SnoLabel;
@@ -28,12 +29,17 @@ private:
     QLineEdit *CnoEdit;
     QLineEdit *SnoEdit;
     QLineEdit *MpointEdit;
-    QLineEdit *MsemesterEdit;
+    QComboBox *MsemesterBox;
 
     QPushButton *ackBtn;
+    QPushButton *cleanBtn;
     QPushButton *quitBtn;
 
     QGridLayout *gridLayout;
+private slots:
+    void onAckBtn();
+    void onQuitBtn();
+    void onCleanBtn();
 };
 
-#endif // MARKREGISTER_H
+#endif // ADDMARK_H

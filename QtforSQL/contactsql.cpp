@@ -33,8 +33,8 @@ bool ContactSQL::isconnecttosql()
     return true;
 }
 
-QSqlQuery ContactSQL::selectfromSql(QString str,QString str2)
-{
+
+QSqlQuery ContactSQL::selectfromSql(QString str,QString str2){
     QSqlQuery query(db);
     QString s;
     s = "select * from " + str2 + " where sname = :sname";
@@ -52,9 +52,57 @@ QSqlQuery ContactSQL::selectfromSql(QString str,QString str2)
     return query;
 }
 
-void ContactSQL::selectallinformation()
-{
+void ContactSQL::selectallinformation(){
     model.setQuery("select * from S,Contact,Grade where S.sname = Contact.sname and S.sname = Grade.sname");
+}
+
+void ContactSQL::deletesomeone(QString str)
+{
+    QSqlQuery query(db);
+    QString name = str;
+    qDebug() << name;
+    query.prepare("select sname from Contact where sname = :sname");
+    query.bindValue(":sname",name);
+    query.exec();
+    qDebug() << query.lastQuery();
+    if(!query.next())
+    {
+        QMessageBox msg;
+        msg.setText("This name is not in our class!So you can't delete!");
+        msg.exec();
+        return;
+    }
+    query.prepare("delete from S where sname = :sname");
+    query.bindValue(":sname",str);
+    if(query.exec())
+    {
+        qDebug() << "succeed";
+    }
+    else
+    {
+        qDebug() << "failed";
+    }
+    query.prepare("delete from Grade where sname = :sname");
+    query.bindValue(":sname",str);
+    if(query.exec())
+    {
+        qDebug() << "succeed";
+    }
+    else
+    {
+        qDebug() << "failed";
+    }
+    query.prepare("delete from Contact where sname = :sname");
+    query.bindValue(":sname",str);
+    if(query.exec())
+    {
+        qDebug() << "succeed";
+    }
+    else
+    {
+        qDebug() << "failed";
+    }
+    return;
 }
 
 QSqlQuery ContactSQL::addtoStudent(QStringList font)
@@ -113,7 +161,6 @@ QSqlQuery ContactSQL::addtoContact(QStringList font)
     if(query.exec())
     {
         qDebug() << "succeed";
-        qDebug() << "succeed";
         QMessageBox msg;
         msg.setText("Add to S succeed!");
     }
@@ -158,51 +205,3 @@ QSqlQuery ContactSQL::addtoGrade(QString str, int data[5])
     return query;
 }
 
-void ContactSQL::deletesomeone(QString str)
-{
-    QSqlQuery query(db);
-    QString name = str;
-    qDebug() << name;
-    query.prepare("select sname from Contact where sname = :sname");
-    query.bindValue(":sname",name);
-    query.exec();
-    qDebug() << query.lastQuery();
-    if(!query.next())
-    {
-        QMessageBox msg;
-        msg.setText("This name is not in our class!So you can't delete!");
-        msg.exec();
-        return;
-    }
-    query.prepare("delete from S where sname = :sname");
-    query.bindValue(":sname",str);
-    if(query.exec())
-    {
-        qDebug() << "succeed";
-    }
-    else
-    {
-        qDebug() << "failed";
-    }
-    query.prepare("delete from Grade where sname = :sname");
-    query.bindValue(":sname",str);
-    if(query.exec())
-    {
-        qDebug() << "succeed";
-    }
-    else
-    {
-        qDebug() << "failed";
-    }
-    query.prepare("delete from Contact where sname = :sname");
-    query.bindValue(":sname",str);
-    if(query.exec())
-    {
-        qDebug() << "succeed";
-    }
-    else
-    {
-        qDebug() << "failed";
-    }
-    return;
-}

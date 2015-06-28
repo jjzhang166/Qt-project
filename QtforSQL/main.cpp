@@ -1,18 +1,17 @@
 #include <QApplication>
-#include "mainwindow.h"
-#include "stuRegister.h"
-#include "classregister.h"
-#include "courseregister.h"
-#include "markregister.h"
-#include "mainform.h"
+#include <QIcon>
 
+#include "mainwindow.h"
+#include "mainform.h"
 #include "login.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    a.setWindowIcon(QIcon(":/app.ico"));
     //Login l;
-    MainWindow l;
+    //MainWindow l;
+    mainform l;
     //courseRegister l;
     //stuRegister l;
     //classRegister l;

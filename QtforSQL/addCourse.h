@@ -1,24 +1,25 @@
-#ifndef COURSEREGISTER_H
-#define COURSEREGISTER_H
+#ifndef ADDCOURSE_H
+#define ADDCOURSE_H
 
 #include <QDialog>
 #include <QLineEdit>
 #include <QLabel>
 #include <QPushButton>
-//#include <QVBoxLayout>
-//#include <QHBoxLayout>
 #include <QGridLayout>
-//#include <QSpacerItem>
 #include <QMessageBox>
-//#include <Qstring>
 
-class courseRegister : public QDialog
+#include "linksql.h"
+
+class addCourse : public QDialog
 {
     Q_OBJECT
 
 public:
-    courseRegister(QWidget *parent = 0);
-    ~courseRegister();
+    addCourse(QWidget *parent = 0);
+    ~addCourse();
+    LinkSql sql;
+    QSqlQuery query;
+
 private:
     QLabel *CnoLabel;
     QLabel *CnameLabel;
@@ -30,8 +31,13 @@ private:
 
     QPushButton *ackBtn;
     QPushButton *quitBtn;
+    QPushButton *cleanBtn;
 
     QGridLayout *gridLayout;
+private slots:
+    void onAckBtn();
+    void onQuitBtn();
+    void onCleanBtn();
 };
 
-#endif // COURSEREGISTER_H
+#endif // ADDCOURSE_H
