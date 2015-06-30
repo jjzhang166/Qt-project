@@ -15,8 +15,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-    mainwindow.cpp \
-    contactsql.cpp \
     login.cpp\
     mainform.cpp \
     addMark.cpp \
@@ -26,10 +24,8 @@ SOURCES += main.cpp\
     addGrade.cpp \
     addFamily.cpp
 
-HEADERS  += mainwindow.h \
-    contactsql.h \
+HEADERS  += \
     login.h \
-    ui_mainwindow.h\
     mainform.h \
     addCourse.h \
     addMark.h \
@@ -38,7 +34,7 @@ HEADERS  += mainwindow.h \
     addGrade.h \
     addFamily.h
 
-FORMS    += mainwindow.ui
+FORMS    +=
 
 RESOURCES += \
     image/image.qrc

@@ -20,23 +20,18 @@ Login::Login(QWidget *parent)
     userLabel->setText(tr("用户名："));
     userEdit = new QLineEdit;
     userEdit->setText(tr("10011006"));
-    userEdit->setStyleSheet("border: 1px groove gray; border-radius: 2px; background-color: rgba(255, 193, 245, 0%); ");
 
     pwdLabel = new QLabel;
     pwdLabel->setText(tr("密  码："));
     pwdEdit = new QLineEdit;
     pwdEdit->setText(tr("0"));
-    pwdEdit->setStyleSheet("border: 1px groove gray; border-radius: 2px; background-color: rgba(255, 193, 245, 0%); ");
 
     ackBtn=new QPushButton;
     ackBtn->setText(tr("确认"));
-    ackBtn->setStyleSheet("background-color:#E6E6FA;border: 1px solid #AAB4C4; width: 40px;height:20px;padding:0 0px;border-radius:1px;");
     cleanBtn=new QPushButton;
     cleanBtn->setText(tr("清空"));
-    cleanBtn->setStyleSheet("background-color:#E6E6FA;border: 1px solid #AAB4C4; width: 40px;height:20px;padding:0 0px;border-radius:1px;");
     quitBtn=new QPushButton;
     quitBtn->setText(tr("退出"));
-    quitBtn->setStyleSheet("background-color:#E6E6FA;border: 1px solid #AAB4C4; width: 40px;height:20px;padding:0 0px;border-radius:1px;");
 
     hLayout1=new QHBoxLayout;
     hLayout1->addWidget(userLabel);
@@ -75,7 +70,7 @@ Login::~Login()
 
 void Login::onAckBtn(){
     if(pwdEdit->text().isEmpty()||userEdit->text().isEmpty()){
-        QMessageBox::information(this,tr("warn"),tr("Please enter your whole information!"),QMessageBox::Ok);
+        QMessageBox::information(this,tr("warn"),tr("Please enter your whole login information!"),QMessageBox::Ok);
         return;
     }
     user=userEdit->text();
@@ -84,7 +79,7 @@ void Login::onAckBtn(){
     QString correctuser="10011006";
     if(user==correctuser&&pwd==correctpwd){
         this->hide();
-        MainWindow *w=new MainWindow();
+        mainform *w=new mainform();
         w->show();
     }else{
         QMessageBox::warning(this,tr("warn"),tr("Please check your user and password!"),QMessageBox::Ok);

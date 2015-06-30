@@ -17,11 +17,9 @@ public:
     bool isLinkToSql();
     void selectAllInf(int i);
 
-    void updateFromSql(QString str1,QString str2,QString str3);
+    void updateFromSql(QString str1,QString str2,QString str3,QString str4,QString str5,QString str6);
     void deleteFromSql(QString str1,QString str2,QString str3);
     QSqlQuery selectFromSql(QString str1,QString str2,QString str3);
-    QSqlQuery selectfromContact(QString str);
-    QSqlQuery selectfromGrade(QString str);
 
     QSqlQuery addToStudent(QStringList list);
     QSqlQuery addToCourse(QStringList list);

@@ -20,40 +20,31 @@ bool LinkSql::isLinkToSql(){
     }
     else{
         QMessageBox msg;
-        msg.setText("Open SQL succeed");
+        msg.setText("Open SQL succeed!");
         msg.exec();
     }
     return true;
 }
 
-void LinkSql::updateFromSql(QString str1,QString str2,QString str3){
+void LinkSql::updateFromSql(QString str1,QString str2,QString str3,QString str4,QString str5,QString str6){
     QSqlQuery query(db);
     QString s = "'";
     s.append(str3);
     s.append("'");
-    QString update = "select " + str2 + " from " + str1 + " where " + str2 + " = " + s;
-    qDebug() << update;
-    query.prepare(update);
-    //query.bindValue(":sname",name);
-    query.exec();
-    qDebug() << query.lastQuery();
-    if(!query.next()){
-        QMessageBox msg;
-        msg.setText("This data is not in our Table!So you can't Update!");
-        msg.exec();
-        return;
-    }
+    QString s2 = "'";
+    s2.append(str6);
+    s2.append("'");
+
     QString updateStr;
-    updateStr = "update " + str1 + "set " + str2 + " = " + s;
+    updateStr = "update " + str1 + " set " + str2 + " = " + s + " where " + str4 + "." + str5 + " = " + s2;
     query.prepare(updateStr);
-    //query.bindValue(":sname",str);
     if(query.exec()){
-        qDebug() << "succeed";
+        qDebug() << updateStr + "\n Update is succeed";
     }
     else{
-        qDebug() << "failed";
+        qDebug() << updateStr ;
         QMessageBox msg;
-        msg.setText("Update is failed!");
+        msg.setText(updateStr + "\n and Update is failed");
         msg.exec();
     }
     return;
@@ -96,9 +87,6 @@ QSqlQuery LinkSql::selectFromSql(QString str1,QString str2,QString str3){
     if(query.exec())
     {
         qDebug() << "succeed";
-        QMessageBox msg;
-        msg.setText(s + "\n and select is succeed!");
-        msg.exec();
     }
     else
     {

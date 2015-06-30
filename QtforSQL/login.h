@@ -10,7 +10,7 @@
 #include <QSpacerItem>
 #include <QMessageBox>
 #include <Qstring>
-#include "mainwindow.h"
+#include "mainform.h"
 
 class Login : public QDialog
 {

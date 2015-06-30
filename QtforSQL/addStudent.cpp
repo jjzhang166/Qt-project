@@ -56,13 +56,10 @@ addStudent::addStudent(QWidget *parent)
 
     ackBtn=new QPushButton;
     ackBtn->setText(tr("确认"));
-    ackBtn->setStyleSheet("background-color:#E6E6FA;border: 1px solid #AAB4C4; width: 40px;height:20px;padding:0 0px;border-radius:1px;");
     quitBtn=new QPushButton;
     quitBtn->setText(tr("退出"));
-    quitBtn->setStyleSheet("background-color:#E6E6FA;border: 1px solid #AAB4C4; width: 40px;height:20px;padding:0 0px;border-radius:1px;");
     cleanBtn=new QPushButton;
     cleanBtn->setText(tr("清空"));
-    cleanBtn->setStyleSheet("background-color:#E6E6FA;border: 1px solid #AAB4C4; width: 40px;height:20px;padding:0 0px;border-radius:1px;");
 
     gridLayout = new QGridLayout;
     gridLayout->addWidget(SnameLabel,0,0);
