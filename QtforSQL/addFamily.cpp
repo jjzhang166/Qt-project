@@ -8,39 +8,48 @@ addFamily::addFamily(QWidget *parent)
     setWindowTitle(tr("添加家庭成员信息界面"));
     this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 
+    //定义“家庭信息号”标签和“家庭信息号”输入框
     FnoLabel = new QLabel;
     FnoLabel->setText(tr("家庭信息号:"));
     FnoEdit = new QLineEdit;
     FnoEdit->setText(tr(""));
 
+    //定义“家属姓名”标签和“家属姓名”输入框
     FnameLabel = new QLabel;
     FnameLabel->setText(tr("家属姓名:"));
     FnameEdit = new QLineEdit;
     FnameEdit->setText(tr(""));
 
+    //定义“联系电话”标签和“联系电话”输入框
     FphoneLabel = new QLabel;
     FphoneLabel->setText(tr("联系电话:"));
     FphoneEdit = new QLineEdit;
     FphoneEdit->setText(tr(""));
 
+    //定义“与本人关系”标签和“与本人关系”输入框
     FrelationLabel = new QLabel;
     FrelationLabel->setText(tr("与本人关系:"));
     FrelationEdit = new QLineEdit;
     FrelationEdit->setText(tr(""));
 
+    //定义“学号”标签和“学号”输入框
     SnoLabel = new QLabel;
     SnoLabel->setText(tr("学号:"));
     SnoEdit = new QLineEdit;
     SnoEdit->setText(tr(""));
 
+    //定义确认、退出、清空按钮，并定义点击动作
     ackBtn=new QPushButton;
     ackBtn->setText(tr("确认"));
+    connect(ackBtn,SIGNAL(clicked()), this, SLOT(onAckBtn()));
     quitBtn=new QPushButton;
     quitBtn->setText(tr("退出"));
+    connect(quitBtn,SIGNAL(clicked()), this, SLOT(onQuitBtn()));
     cleanBtn=new QPushButton;
     cleanBtn->setText(tr("清空"));
+    connect(cleanBtn,SIGNAL(clicked()), this, SLOT(onCleanBtn()));
 
-
+    //布局管理
     gridLayout = new QGridLayout;
     gridLayout->addWidget(FnoLabel,0,0);
     gridLayout->addWidget(FnoEdit,0,1);
@@ -58,9 +67,7 @@ addFamily::addFamily(QWidget *parent)
 
     this->setLayout(gridLayout);
 
-    connect(ackBtn,SIGNAL(clicked()), this, SLOT(onAckBtn()));
-    connect(quitBtn,SIGNAL(clicked()), this, SLOT(onQuitBtn()));
-    connect(cleanBtn,SIGNAL(clicked()), this, SLOT(onCleanBtn()));
+
 }
 
 addFamily::~addFamily(){

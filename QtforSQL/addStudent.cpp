@@ -8,59 +8,73 @@ addStudent::addStudent(QWidget *parent)
     setWindowTitle(tr("学生注册界面"));
     this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 
+    //定义“学号”标签和“学号”输入框
     SnoLabel = new QLabel;
     SnoLabel->setText(tr("学号:"));
     SnoEdit = new QLineEdit;
     SnoEdit->setText(tr(""));
 
+    //定义“姓名”标签和“姓名”输入框
     SnameLabel = new QLabel;
     SnameLabel->setText(tr("姓名:"));
     SnameEdit = new QLineEdit;
     SnameEdit->setText(tr(""));
 
+    //定义“性别”标签和“性别”下拉框，下拉框包括“女”和“男”选项
     SsexLabel = new QLabel;
     SsexLabel->setText(tr("性别:"));
     SsexComboBox=new QComboBox;
     SsexComboBox->addItem(tr("女"));
     SsexComboBox->addItem(tr("男"));
 
+    //定义“出生日期”标签和“出生日期”输入框
     SdateLabel = new QLabel;
     SdateLabel->setText(tr("出生日期:"));
     SdateEdit = new QLineEdit;
     SdateEdit->setText(tr(""));
 
+    //定义“民族”标签和“民族”输入框
     SnationLabel = new QLabel;
     SnationLabel->setText(tr("民族:"));
     SnationEdit = new QLineEdit;
     SnationEdit->setText(tr(""));
 
+    //定义“手机号码”标签和“手机号码”输入框
     SphoneLabel = new QLabel;
     SphoneLabel->setText(tr("手机号码:"));
     SphoneEdit = new QLineEdit;
     SphoneEdit->setText(tr(""));
 
+    //定义“家庭住址”标签和“家庭住址”输入框
     SaddressLabel = new QLabel;
     SaddressLabel->setText(tr("家庭住址:"));
     SaddressEdit = new QLineEdit;
     SaddressEdit->setText(tr(""));
 
+    //定义“毕业去向”标签和“毕业去向”输入框
     SgraduateLabel = new QLabel;
     SgraduateLabel->setText(tr("毕业去向:"));
     SgraduateEdit = new QLineEdit;
     SgraduateEdit->setText(tr(""));
 
+    //定义“班号”标签和“班号”输入框
     GnoLabel = new QLabel;
     GnoLabel->setText(tr("班号:"));
     GnoEdit = new QLineEdit;
     GnoEdit->setText(tr(""));
 
+    //定义确认、退出、清空按钮，并定义点击动作
     ackBtn=new QPushButton;
     ackBtn->setText(tr("确认"));
+    connect(ackBtn,SIGNAL(clicked()), this, SLOT(onAckBtn()));
     quitBtn=new QPushButton;
     quitBtn->setText(tr("退出"));
     cleanBtn=new QPushButton;
+    connect(quitBtn,SIGNAL(clicked()), this, SLOT(onQuitBtn()));
     cleanBtn->setText(tr("清空"));
+    connect(cleanBtn,SIGNAL(clicked()), this, SLOT(onCleanBtn()));
 
+    //布局管理
     gridLayout = new QGridLayout;
     gridLayout->addWidget(SnameLabel,0,0);
     gridLayout->addWidget(SnameEdit,0,1);
@@ -85,10 +99,6 @@ addStudent::addStudent(QWidget *parent)
     gridLayout->addWidget(cleanBtn,9,0);
 
     this->setLayout(gridLayout);
-
-    connect(ackBtn,SIGNAL(clicked()), this, SLOT(onAckBtn()));
-    connect(quitBtn,SIGNAL(clicked()), this, SLOT(onQuitBtn()));
-    connect(cleanBtn,SIGNAL(clicked()), this, SLOT(onCleanBtn()));
 }
 
 addStudent::~addStudent(){

@@ -8,34 +8,43 @@ addMark::addMark(QWidget *parent)
     setWindowTitle(tr("添加成绩界面"));
     this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 
+    //定义“学  号”标签和“学  号”输入框
     SnoLabel = new QLabel;
     SnoLabel->setText(tr("学  号:"));
     SnoEdit = new QLineEdit;
     SnoEdit->setText(tr(""));
 
+    //定义“课程号”标签和“课程号”输入框
     CnoLabel = new QLabel;
     CnoLabel->setText(tr("课程号:"));
     CnoEdit = new QLineEdit;
     CnoEdit->setText(tr(""));
 
+    //定义“分  数”标签和“分  数”输入框
     MpointLabel = new QLabel;
     MpointLabel->setText(tr("分  数:"));
     MpointEdit = new QLineEdit;
     MpointEdit->setText(tr(""));
 
+    //定义“学  期”标签和“学  期”下拉框，下拉框有“期中”和“期末”选项
     MsemesterLabel = new QLabel;
     MsemesterLabel->setText(tr("学  期:"));
     MsemesterBox = new QComboBox;
     MsemesterBox->addItem(tr("期中"));
     MsemesterBox->addItem(tr("期末"));
 
+    //定义确认、退出、清空按钮，并定义点击动作
     ackBtn=new QPushButton;
     ackBtn->setText(tr("确认"));
+    connect(ackBtn,SIGNAL(clicked()), this, SLOT(onAckBtn()));
     quitBtn=new QPushButton;
     quitBtn->setText(tr("退出"));
+    connect(quitBtn,SIGNAL(clicked()), this, SLOT(onQuitBtn()));
     cleanBtn=new QPushButton;
     cleanBtn->setText(tr("清空"));
+    connect(cleanBtn,SIGNAL(clicked()), this, SLOT(onCleanBtn()));
 
+    //布局管理
     gridLayout = new QGridLayout;
     gridLayout->addWidget(SnoLabel,0,0);
     gridLayout->addWidget(SnoEdit,0,1);
@@ -50,10 +59,6 @@ addMark::addMark(QWidget *parent)
     gridLayout->addWidget(cleanBtn,4,0);
 
     this->setLayout(gridLayout);
-
-    connect(ackBtn,SIGNAL(clicked()), this, SLOT(onAckBtn()));
-    connect(quitBtn,SIGNAL(clicked()), this, SLOT(onQuitBtn()));
-    connect(cleanBtn,SIGNAL(clicked()), this, SLOT(onCleanBtn()));
 }
 
 addMark::~addMark()

@@ -18,26 +18,31 @@ mainform::mainform(QWidget *parent)
     textStr="                  中学生档案管理系统\n\n         ";
     textStr.append("           作者：徐秀天\n\n");
     textStr.append("             工具：Qt SDK and Qt Creator \n\n");
-    textStr.append("                    版本：终极版 \n\n");
+    textStr.append("                    版本：V5 版本 \n\n");
 
+    //用QFrame::VLine定义“关于”界面的垂直标签
     aboutVLineLabel = new QLabel;
     aboutVLineLabel->setFrameStyle(QFrame::VLine | QFrame::Raised);
+    //用QFrame::HLine定义“关于”界面的水平标签
     aboutHLineLabel = new QLabel;
     aboutHLineLabel->setFrameStyle(QFrame::HLine | QFrame::Raised);
+    //用QFrame::WinPanel定义“关于”界面的图片标签，并用QPixmap类加载图片
     aboutPictureLabel = new QLabel;
     aboutPictureLabel->setFrameStyle(QFrame::WinPanel | QFrame::Raised);
-    QPixmap pix(":/1.jpg");
+    QPixmap pix(":/aboutPicture.jpg");
     aboutPictureLabel->setPixmap(pix);
+    //用QFrame::Box定义“关于”界面的文本标签载体，并添加文本
     aboutTextLabel = new QLabel;
     aboutTextLabel->setFrameStyle(QFrame::Box | QFrame::Raised);
     aboutTextLabel->setWordWrap(true);
     aboutTextLabel->setText(textStr);
 
+    //定义退出按钮，并定义点击动作
     quitBtn = new QPushButton;
     quitBtn->setText(tr("退出"));
-
     connect(quitBtn,SIGNAL(clicked()),this,SLOT(onQuitBtn()));
 
+    //布局管理
     aboutLeftVBoxLayout = new QVBoxLayout;
     aboutLeftVBoxLayout->addWidget(aboutPictureLabel);
     aboutLeftVBoxLayout->addStretch(1);
@@ -56,31 +61,43 @@ mainform::mainform(QWidget *parent)
     aboutHBoxLayout->setStretch(1,1);
     aboutHBoxLayout->setStretch(2,11);
 
+    //往主界面（用QToolBox定义）添加“关于”页面
     aboutToolBoxWidget = new QWidget;
     aboutToolBoxWidget->setLayout(aboutHBoxLayout);
 
 
     //"添加界面"
+    //定义“学生注册界面”按钮，并添加文本在按钮上和定义点击动作
     studentAddBtn = new QPushButton;
     studentAddBtn->setText(tr("学生注册界面"));
     studentAddBtn->setStyleSheet("width: 40px;height:20px;padding:2 2px;");
+    connect(studentAddBtn,SIGNAL(clicked()),this,SLOT(showStudentDlg()));
 
+    //定义“添加成绩界面”按钮，并添加文本在按钮上和定义点击动作
     markAddBtn = new QPushButton;
     markAddBtn->setText(tr("添加成绩界面"));
     markAddBtn->setStyleSheet("width: 40px;height:20px;padding:2 2px;");
+    connect(markAddBtn,SIGNAL(clicked()),this,SLOT(showMarkDlg()));
 
+    //定义“添加班级界面”按钮，并添加文本在按钮上和定义点击动作
     gradeAddBtn = new QPushButton;
     gradeAddBtn->setText(tr("添加班级界面"));
     gradeAddBtn->setStyleSheet("width: 40px;height:20px;padding:2 2px;");
+    connect(gradeAddBtn,SIGNAL(clicked()),this,SLOT(showGradeDlg()));
 
+    //定义“添加课程界面”按钮，并添加文本在按钮上和定义点击动作
     courseAddBtn = new QPushButton;
     courseAddBtn->setText(tr("添加课程界面"));
     courseAddBtn->setStyleSheet("width: 40px;height:20px;padding:2 2px;");
+    connect(courseAddBtn,SIGNAL(clicked()),this,SLOT(showCourseDlg()));
 
+    //定义“添加家庭成员信息界面”按钮，并添加文本在按钮上和定义点击动作
     familyAddBtn = new QPushButton;
     familyAddBtn->setText(tr("添加家庭成员信息界面"));
     familyAddBtn->setStyleSheet("width: 40px;height:20px;padding:2 2px;");
+    connect(familyAddBtn,SIGNAL(clicked()),this,SLOT(showFamilyDlg()));
 
+    //布局管理
     appendGroupBoxVLayout = new QVBoxLayout;
     appendGroupBoxVLayout->addWidget(gradeAddBtn);
     appendGroupBoxVLayout->addWidget(studentAddBtn);
@@ -88,17 +105,14 @@ mainform::mainform(QWidget *parent)
     appendGroupBoxVLayout->addWidget(courseAddBtn);
     appendGroupBoxVLayout->addWidget(familyAddBtn);
 
+    //“学生注册界面”、“添加成绩界面”、“添加班级界面”、“添加课程界面”、“添加家庭成员信息界面”
+    //这5个按钮用QGroupBox管理
     groupBox = new QGroupBox;
     groupBox->setTitle(tr("'添加'界面"));
     groupBox->setStyleSheet("height:280;width:230");
     groupBox->setLayout(appendGroupBoxVLayout);
 
-    connect(studentAddBtn,SIGNAL(clicked()),this,SLOT(showStuDlg()));
-    connect(gradeAddBtn,SIGNAL(clicked()),this,SLOT(showGradeDlg()));
-    connect(courseAddBtn,SIGNAL(clicked()),this,SLOT(showCourseDlg()));
-    connect(markAddBtn,SIGNAL(clicked()),this,SLOT(showMarkDlg()));
-    connect(familyAddBtn,SIGNAL(clicked()),this,SLOT(showFamilyDlg()));
-
+    //往主界面（用QToolBox定义）添加“添加”页面
     appendToolBoxWidget = new QWidget;
     appendGroupToolHLayout = new QHBoxLayout;
     appendGroupToolHLayout->addWidget(groupBox);
@@ -107,23 +121,25 @@ mainform::mainform(QWidget *parent)
 
 
     //"查找界面"
+    //定义“输入你选定查找的数据”标签和“输入你选定查找的数据”输入框
     searchInputLabel =new QLabel;
     searchInputLabel->setText(tr("输入你选定查找的数据"));
     seachInputEdit= new QLineEdit;
     seachInputEdit->setText(tr(""));
 
+    //定义“查找”按钮和定义点击动作
     selectSearchBtn = new QPushButton;
     selectSearchBtn->setText(tr("查找"));
     connect(selectSearchBtn,SIGNAL(clicked()),this,SLOT(selectSql()));
+    //定义“查找全部”按钮和定义点击动作
     selectAllSearchBtn = new QPushButton;
     selectAllSearchBtn->setText(tr("查找全部"));
     connect(selectAllSearchBtn,SIGNAL(clicked()),this,SLOT(selectAll()));
 
-    selectToolBoxWidget = new QWidget;
-    appendGridLayout = new QGridLayout;
+    //定义QTableView用于显示数据库SQL查找结果
     tView = new QTableView;
 
-    //一下是默认的QComboxBox显示的数据
+    //一下是默认的QComboxBox显示的数据，并定义点击动作
     selectComboBox=new QComboBox;
     selectComboBox->addItem(tr("课程"));
     selectComboBox->addItem(tr("家庭信息"));
@@ -136,6 +152,8 @@ mainform::mainform(QWidget *parent)
     selectItemCombo->addItem(tr("任课教师"));
     connect(selectComboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(OnComboIndexChanged()));
 
+    //布局管理
+    appendGridLayout = new QGridLayout;
     appendGridLayout->setColumnStretch(0,1);
     appendGridLayout->setColumnStretch(1,1);
     appendGridLayout->setColumnStretch(2,1);
@@ -149,31 +167,39 @@ mainform::mainform(QWidget *parent)
     appendVBoxLayout= new QVBoxLayout;
     appendVBoxLayout->addLayout(appendGridLayout);
     appendVBoxLayout->addWidget(tView);
+
+    //往主界面（用QToolBox定义）添加“查找”页面
+    selectToolBoxWidget = new QWidget;
     selectToolBoxWidget->setLayout(appendVBoxLayout);
 
     //"删除*修改 界面"
     //删除
+    //定义可以选择的表删除，用QComboBox，并设置默认值
     deleteComboBox=new QComboBox;
     deleteComboBox->addItem(tr("课程"));
     deleteComboBox->addItem(tr("家庭信息"));
     deleteComboBox->addItem(tr("班级"));
     deleteComboBox->addItem(tr("成绩"));
     deleteComboBox->addItem(tr("学生"));
+    //定义已经选择的表的项目删除，用QComboBox，并设置默认值
     deleteItemCombo=new QComboBox;
     deleteItemCombo->addItem(tr("课程号"));
     deleteItemCombo->addItem(tr("课程名"));
     deleteItemCombo->addItem(tr("任课教师"));
     connect(deleteComboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(OnComboIndexChanged2()));
 
+    //定义“删除”按钮，并定义点击动作
     deleteAckBtn = new QPushButton;
     deleteAckBtn->setText(tr("删除"));
     connect(deleteAckBtn,SIGNAL(clicked()),this,SLOT(delectSql()));
 
+    //定义“删除条件”标签（居中对齐）和“删除条件”输入框
     deleteConditionLabel = new QLabel;
     deleteConditionLabel->setText(tr("删除条件："));
     deleteConditionLabel->setAlignment(Qt::AlignCenter);
     deleteConditionEdit = new QLineEdit;
 
+    //”删除“布局管理
     deleteInTopGridLayout = new QGridLayout;
     deleteInTopGridLayout->addWidget(deleteComboBox,0,0);
     deleteInTopGridLayout->addWidget(deleteItemCombo,0,1);
@@ -185,30 +211,41 @@ mainform::mainform(QWidget *parent)
     deleteInTopGridLayout->setColumnStretch(2,1);
 
     //修改
+    //定义“要更新的表”的标签
     updateTableLabel = new QLabel;
     updateTableLabel->setText(tr("要更新的表："));
     updateTableLabel->setAlignment(Qt::AlignCenter);
+
+    //定义可以选择的表更新，用QComboBox，并设置默认值
     updateTableComboBox = new QComboBox;
     updateTableComboBox->addItem(tr("课程"));
     updateTableComboBox->addItem(tr("家庭信息"));
     updateTableComboBox->addItem(tr("班级"));
     updateTableComboBox->addItem(tr("成绩"));
     updateTableComboBox->addItem(tr("学生"));
-    updateAckBtn = new QPushButton;
-    updateAckBtn->setText(tr("确认更新"));
-    connect(updateAckBtn,SIGNAL(clicked()),this,SLOT(updateSql()));
-    updateSetLabel = new QLabel;
-    updateSetLabel->setText(tr("set"));
-    updateSetLabel->setAlignment(Qt::AlignCenter);
     updateSetComboBox=new QComboBox;
     updateSetComboBox->addItem(tr("课程号"));
     updateSetComboBox->addItem(tr("课程名"));
     updateSetComboBox->addItem(tr("任课教师"));
     connect(updateTableComboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(OnComboIndexChanged3()));
+
+    //定义带有“确认更新”标签的按钮，并定义点击动作
+    updateAckBtn = new QPushButton;
+    updateAckBtn->setText(tr("确认更新"));
+    connect(updateAckBtn,SIGNAL(clicked()),this,SLOT(updateSql()));
+
+    //定义数据库更新句子的“set”标签
+    updateSetLabel = new QLabel;
+    updateSetLabel->setText(tr("set"));
+    updateSetLabel->setAlignment(Qt::AlignCenter);
+
+    //定义数据库更新句子的“where”标签
     updateSetEdit = new QLineEdit;
     updateWhereLabel = new QLabel;
     updateWhereLabel->setText(tr("where"));
     updateWhereLabel->setAlignment(Qt::AlignCenter);
+
+    //定义更新的条件的表名，用QComboBox，并设置默认值
     updateWhereComboBox = new QComboBox;
     updateWhereComboBox->addItem(tr("课程"));
     updateWhereComboBox->addItem(tr("家庭信息"));
@@ -220,9 +257,12 @@ mainform::mainform(QWidget *parent)
     updateWhereItemCombo4->addItem(tr("课程名"));
     updateWhereItemCombo4->addItem(tr("任课教师"));
     connect(updateWhereComboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(OnComboIndexChanged4()));
+
+    //定义更新是需要输入的条件的输入框
     updateWhereEdit = new QLineEdit;
     updateWhereEdit->setText(tr(""));
 
+    //“更新”布局管理
     updateInDownGridLayout = new QGridLayout;
     updateInDownGridLayout->addWidget(updateTableLabel,0,0);
     updateInDownGridLayout->addWidget(updateTableComboBox,0,1);
@@ -239,9 +279,11 @@ mainform::mainform(QWidget *parent)
     updateInDownGridLayout->setColumnStretch(2,1);
     updateInDownGridLayout->setColumnStretch(3,1);
 
+    //用QFrame::HLine定义“删除”和“更新”之间的水平标签
     deleteHLineLabel = new QLabel;
     deleteHLineLabel->setFrameStyle(QFrame::HLine | QFrame::Raised);
 
+    //“删除”和“更新”的布局管理
     deleteVBoxLayout = new QVBoxLayout;
     deleteVBoxLayout->addLayout(deleteInTopGridLayout);
     deleteVBoxLayout->addWidget(deleteHLineLabel);
@@ -250,6 +292,7 @@ mainform::mainform(QWidget *parent)
     deleteVBoxLayout->setStretch(1,1);
     deleteVBoxLayout->setStretch(2,5);
 
+    //往主界面（用QToolBox定义）添加“删除*修改”页面
     deleteToolBoxWidget = new QWidget;
     deleteToolBoxWidget->setLayout(deleteVBoxLayout);
 

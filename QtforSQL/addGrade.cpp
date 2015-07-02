@@ -8,38 +8,48 @@ addGrade::addGrade(QWidget *parent)
     setWindowTitle(tr("添加班级界面"));
     this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 
+    //定义“班号”标签和“班号”输入框
     GnoLabel = new QLabel;
     GnoLabel->setText(tr("班号:"));
     GnoEdit = new QLineEdit;
     GnoEdit->setText(tr(""));
 
+    //定义“所在届”标签和“所在届”输入框
     GperiodLabel = new QLabel;
     GperiodLabel->setText(tr("所在届:"));
     GperiodEdit = new QLineEdit;
     GperiodEdit->setText(tr(""));
 
+    //定义“年级”标签和“年级”输入框
     GgradeLabel = new QLabel;
     GgradeLabel->setText(tr("年级:"));
     GgradeEdit = new QLineEdit;
     GgradeEdit->setText(tr(""));
 
+    //定义“学生人数”标签和“学生人数”输入框
     GstunumLabel = new QLabel;
     GstunumLabel->setText(tr("学生人数:"));
     GstunumEdit = new QLineEdit;
     GstunumEdit->setText(tr(""));
 
+    //定义“班主任”标签和“班主任”输入框
     GchargeLabel = new QLabel;
     GchargeLabel->setText(tr("班主任:"));
     GchargeEdit = new QLineEdit;
     GchargeEdit->setText(tr(""));
 
+    //定义确认、退出、清空按钮，并定义点击动作
     ackBtn=new QPushButton;
     ackBtn->setText(tr("确认"));
+    connect(ackBtn,SIGNAL(clicked()), this, SLOT(onAckBtn()));
     quitBtn=new QPushButton;
     quitBtn->setText(tr("退出"));
+    connect(quitBtn,SIGNAL(clicked()), this, SLOT(onQuitBtn()));
     cleanBtn=new QPushButton;
     cleanBtn->setText(tr("清空"));
+    connect(cleanBtn,SIGNAL(clicked()), this, SLOT(onCleanBtn()));
 
+    //布局管理
     gridLayout = new QGridLayout;
     gridLayout->addWidget(GnoLabel,0,0);
     gridLayout->addWidget(GnoEdit,0,1);
@@ -57,10 +67,6 @@ addGrade::addGrade(QWidget *parent)
 
 
     this->setLayout(gridLayout);
-
-    connect(ackBtn,SIGNAL(clicked()), this, SLOT(onAckBtn()));
-    connect(quitBtn,SIGNAL(clicked()), this, SLOT(onQuitBtn()));
-    connect(cleanBtn,SIGNAL(clicked()), this, SLOT(onCleanBtn()));
 }
 
 addGrade::~addGrade()

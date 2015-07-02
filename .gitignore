@@ -15,7 +15,7 @@
 build*/
 Makefile*
 untitled*/
-*.pro.user
+*.pro.*
 *.autosave
 ui_*
 *.autosave

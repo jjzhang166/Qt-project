@@ -8,7 +8,7 @@ Login::Login(QWidget *parent)
     setMinimumSize(278,177);    //设置固定大小
     setMaximumSize(278,177);
 
-    QPixmap pixmap(":/aa.jpg");
+    QPixmap pixmap(":/loginPicture.jpg");
     QPalette palette;
     palette.setBrush(backgroundRole(), QBrush(pixmap));
     setPalette(palette);

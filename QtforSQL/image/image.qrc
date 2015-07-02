@@ -1,9 +1,8 @@
 <RCC>
     <qresource prefix="/">
-        <file>aa.jpg</file>
+        <file>loginPicture.jpg</file>
         <file>app.ico</file>
-        <file>1.jpg</file>
+        <file>aboutPicture.jpg</file>
         <file>blue.qss</file>
-        <file>down_arrow.png</file>
     </qresource>
 </RCC>
