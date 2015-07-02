@@ -238,9 +238,10 @@ mainform::mainform(QWidget *parent)
     updateSetLabel = new QLabel;
     updateSetLabel->setText(tr("set"));
     updateSetLabel->setAlignment(Qt::AlignCenter);
+    updateSetEdit = new QLineEdit;
+    updateSetEdit->setText(tr(""));
 
     //定义数据库更新句子的“where”标签
-    updateSetEdit = new QLineEdit;
     updateWhereLabel = new QLabel;
     updateWhereLabel->setText(tr("where"));
     updateWhereLabel->setAlignment(Qt::AlignCenter);
@@ -356,10 +357,10 @@ void mainform::updateSql(){
     QString str1,str2,str3,str4,str5,str6;
     str1=cnToen(updateTableComboBox->currentText());
     str2=cnToen(updateSetComboBox->currentText());
-    str3=cnToen(updateSetEdit->text());
+    str3=updateSetEdit->text();
     str4=cnToen(updateWhereComboBox->currentText());
     str5=cnToen(updateWhereItemCombo4->currentText());
-    str6=cnToen(updateWhereEdit->text());
+    str6=updateWhereEdit->text();
     sql.updateFromSql(str1,str2,str3,str4,str5,str6);
 }
 

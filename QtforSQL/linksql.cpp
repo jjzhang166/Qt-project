@@ -19,9 +19,9 @@ bool LinkSql::isLinkToSql(){
         return false;
     }
     else{
-        QMessageBox msg;
-        msg.setText("Open SQL succeed!");
-        msg.exec();
+        QMessageBox isMsg;
+        isMsg.setText("Open SQL succeed!");
+        isMsg.exec();
     }
     return true;
 }
@@ -40,12 +40,15 @@ void LinkSql::updateFromSql(QString str1,QString str2,QString str3,QString str4,
     query.prepare(updateStr);
     if(query.exec()){
         qDebug() << updateStr + "\n Update is succeed";
+        QMessageBox updateMsg;
+        updateMsg.setText(updateStr + "\n Update is succeed");
+        updateMsg.exec();
     }
     else{
         qDebug() << updateStr ;
-        QMessageBox msg;
-        msg.setText(updateStr + "\n and Update is failed");
-        msg.exec();
+        QMessageBox updateMsg2;
+        updateMsg2.setText(updateStr + "\n and Update is failed");
+        updateMsg2.exec();
     }
     return;
 }
@@ -60,15 +63,15 @@ void LinkSql::deleteFromSql(QString str1,QString str2,QString str3){
     query.prepare(delStr);
     if(query.exec()){
         qDebug() << delStr + " \n succeed ";
-        QMessageBox msg;
-        msg.setText(delStr + "\n and delete is succeed!");
-        msg.exec();
+        QMessageBox deleteMsg;
+        deleteMsg.setText(delStr + "\n and delete is succeed!");
+        deleteMsg.exec();
     }
     else{
         qDebug() << "failed";
-        QMessageBox msg;
-        msg.setText(delStr + "\n and delete is failed!");
-        msg.exec();
+        QMessageBox deleteMsg2;
+        deleteMsg2.setText(delStr + "\n and delete is failed!");
+        deleteMsg2.exec();
     }
     return;
 }
@@ -91,9 +94,9 @@ QSqlQuery LinkSql::selectFromSql(QString str1,QString str2,QString str3){
     else
     {
         qDebug() << "failed";
-        QMessageBox msg;
-        msg.setText(s + "\n and select is failed!");
-        msg.exec();
+        QMessageBox selectMsg;
+        selectMsg.setText(s + "\n and select is failed!");
+        selectMsg.exec();
     }
     return query;
 }
@@ -126,9 +129,9 @@ QSqlQuery LinkSql::addToCourse(QStringList list){
     query.bindValue(":Cno",Cno);
     query.exec();
     if(query.next()){
-        QMessageBox msg;
-        msg.setText("This Cno has already in the database!\nPlease reset!");
-        msg.exec();
+        QMessageBox addCourseMsg;
+        addCourseMsg.setText("This Cno has already in the database!\nPlease reset!");
+        addCourseMsg.exec();
         return query;
     }
     query.prepare("insert into Course(Cno,Cname,Cteacher)" "values(?,?,?)");
@@ -138,15 +141,15 @@ QSqlQuery LinkSql::addToCourse(QStringList list){
     }
     if(query.exec()){
         qDebug() << "succeed";
-        QMessageBox msg;
-        msg.setText("Add to Course succeed!");
-        msg.exec();
+        QMessageBox addCourseMsg2;
+        addCourseMsg2.setText("Add to Course succeed!");
+        addCourseMsg2.exec();
     }
     else{
         qDebug() << "failed";
-        QMessageBox msg;
-        msg.setText("Add to Course failed!");
-        msg.exec();
+        QMessageBox addCourseMsg3;
+        addCourseMsg3.setText("Add to Course failed!");
+        addCourseMsg3.exec();
     }
     return query;
 }
@@ -159,9 +162,9 @@ QSqlQuery LinkSql::addToFamily(QStringList list)
     query.bindValue(":Fno",Fno);
     query.exec();
     if(query.next()){
-        QMessageBox msg;
-        msg.setText("This Fno has already in the database!\nPlease reset!");
-        msg.exec();
+        QMessageBox addFamilyMsg;
+        addFamilyMsg.setText("This Fno has already in the database!\nPlease reset!");
+        addFamilyMsg.exec();
         return query;
     }
     query.prepare("insert into Family(Fno,Fname,Fphone,Frelation,Sno)" "values(?,?,?,?,?)");
@@ -171,15 +174,15 @@ QSqlQuery LinkSql::addToFamily(QStringList list)
     }
     if(query.exec()){
         qDebug() << "succeed";
-        QMessageBox msg;
-        msg.setText("Add to Family succeed!");
-        msg.exec();
+        QMessageBox addFamilyMsg2;
+        addFamilyMsg2.setText("Add to Family succeed!");
+        addFamilyMsg2.exec();
     }
     else{
         qDebug() << "failed";
-        QMessageBox msg;
-        msg.setText("Add to Family failed!");
-        msg.exec();
+        QMessageBox addFamilyMsg3;
+        addFamilyMsg3.setText("Add to Family failed!");
+        addFamilyMsg3.exec();
     }
     return query;
 }
@@ -192,9 +195,9 @@ QSqlQuery LinkSql::addToGrade(QStringList list)
     query.bindValue(":Gno",Gno);
     query.exec();
     if(query.next()){
-        QMessageBox msg;
-        msg.setText("This Gno has already in the database!\nPlease reset!");
-        msg.exec();
+        QMessageBox addGradeMsg;
+        addGradeMsg.setText("This Gno has already in the database!\nPlease reset!");
+        addGradeMsg.exec();
         return query;
     }
     query.prepare("insert into Grade(Gno,Gperiod,Ggrade,Gstunum,Gcharge)" "values(?,?,?,?,?)");
@@ -204,15 +207,15 @@ QSqlQuery LinkSql::addToGrade(QStringList list)
     }
     if(query.exec()){
         qDebug() << "succeed";
-        QMessageBox msg;
-        msg.setText("Add to Grade succeed!");
-        msg.exec();
+        QMessageBox addGradeMsg2;
+        addGradeMsg2.setText("Add to Grade succeed!");
+        addGradeMsg2.exec();
     }
     else{
         qDebug() << "failed";
-        QMessageBox msg;
-        msg.setText("Add to Grade failed!");
-        msg.exec();
+        QMessageBox addGradeMsg3;
+        addGradeMsg3.setText("Add to Grade failed!");
+        addGradeMsg3.exec();
     }
     return query;
 }
@@ -225,9 +228,9 @@ QSqlQuery LinkSql::addToMark(QStringList list)
     query.bindValue(":Cno",Cno);
     query.exec();
     if(!query.next()){
-        QMessageBox msg;
-        msg.setText("This Cno has not in the database!\nPlease reset!");
-        msg.exec();
+        QMessageBox addMarkMsg;
+        addMarkMsg.setText("This Cno has not in the database!\nPlease reset!");
+        addMarkMsg.exec();
         return query;
     }
     query.prepare("insert into Mark(Cno,Sno,Mpoint,Msemester)" "values(?,?,?,?)");
@@ -237,15 +240,15 @@ QSqlQuery LinkSql::addToMark(QStringList list)
     }
     if(query.exec()){
         qDebug() << "succeed";
-        QMessageBox msg;
-        msg.setText("Add to Mark succeed!");
-        msg.exec();
+        QMessageBox addMarkMsg2;
+        addMarkMsg2.setText("Add to Mark succeed!");
+        addMarkMsg2.exec();
     }
     else{
         qDebug() << "failed";
-        QMessageBox msg;
-        msg.setText("Add to Mark failed!");
-        msg.exec();
+        QMessageBox addMarkMsg3;
+        addMarkMsg3.setText("Add to Mark failed!");
+        addMarkMsg3.exec();
     }
     return query;
 }
@@ -258,9 +261,9 @@ QSqlQuery LinkSql::addToStudent(QStringList list)
     query.bindValue(":Sno",Sno);
     query.exec();
     if(query.next()){
-        QMessageBox msg;
-        msg.setText("This Sno has already in the database!\nPlease reset!");
-        msg.exec();
+        QMessageBox addStudentMsg;
+        addStudentMsg.setText("This Sno has already in the database!\nPlease reset!");
+        addStudentMsg.exec();
         return query;
     }
     query.prepare("insert into Student(Sno,Sname,Ssex,Sdate,Snation,Sphone,Saddress,Sgraduate,Gno)" "values(?,?,?,?,?,?,?,?,?)");
@@ -270,15 +273,15 @@ QSqlQuery LinkSql::addToStudent(QStringList list)
     }
     if(query.exec()){
         qDebug() << "succeed";
-        QMessageBox msg;
-        msg.setText("Add to Student succeed!");
-        msg.exec();
+        QMessageBox addStudentMsg2;
+        addStudentMsg2.setText("Add to Student succeed!");
+        addStudentMsg2.exec();
     }
     else{
         qDebug() << "failed";
-        QMessageBox msg;
-        msg.setText("Add to Student failed!");
-        msg.exec();
+        QMessageBox addStudentMsg3;
+        addStudentMsg3.setText("Add to Student failed!");
+        addStudentMsg3.exec();
     }
     return query;
 }
