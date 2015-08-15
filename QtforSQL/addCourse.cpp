@@ -30,9 +30,6 @@ addCourse::addCourse(QWidget *parent)
     ackBtn=new QPushButton;
     ackBtn->setText(tr("确认"));
     connect(ackBtn,SIGNAL(clicked()), this, SLOT(onAckBtn()));
-    quitBtn=new QPushButton;
-    quitBtn->setText(tr("退出"));
-    connect(quitBtn,SIGNAL(clicked()), this, SLOT(onQuitBtn()));
     cleanBtn=new QPushButton;
     cleanBtn->setText(tr("清空"));
     connect(cleanBtn,SIGNAL(clicked()), this, SLOT(onCleanBtn()));
@@ -47,7 +44,8 @@ addCourse::addCourse(QWidget *parent)
     gridLayout->addWidget(CteacherEdit,2,1);
     gridLayout->addWidget(cleanBtn,5,0);
     gridLayout->addWidget(ackBtn,5,1);
-    gridLayout->addWidget(quitBtn,5,2);
+    gridLayout->setColumnStretch(0,1);
+    gridLayout->setColumnStretch(1,2);
 
     this->setLayout(gridLayout);
 }
@@ -55,10 +53,6 @@ addCourse::addCourse(QWidget *parent)
 addCourse::~addCourse()
 {
 
-}
-
-void addCourse::onQuitBtn(){
-    this->close();
 }
 
 void addCourse::onCleanBtn(){

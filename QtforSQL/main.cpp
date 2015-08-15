@@ -7,6 +7,7 @@
 
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);
+
     a.setWindowIcon(QIcon(":/app.ico"));
 
     QString stylesheet;
@@ -18,5 +19,6 @@ int main(int argc, char *argv[]){
 
     Login l;
     l.show();
+
     return a.exec();
 }

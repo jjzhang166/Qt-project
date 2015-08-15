@@ -13,7 +13,6 @@
 class addGrade : public QWidget
 {
     Q_OBJECT
-
 public:
     addGrade(QWidget *parent = 0);
     ~addGrade();
@@ -35,12 +34,10 @@ private:
 
     QPushButton *ackBtn;
     QPushButton *cleanBtn;
-    QPushButton *quitBtn;
 
     QGridLayout *gridLayout;
 private slots:
     void onAckBtn();
-    void onQuitBtn();
     void onCleanBtn();
 };
 

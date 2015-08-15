@@ -13,7 +13,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        main.cpp \
     app.cpp \
     gamemodel.cpp \
     gameview.cpp \

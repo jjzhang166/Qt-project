@@ -55,12 +55,11 @@ Login::Login(QWidget *parent)
     vLayout->addLayout(hLayout3);
     vLayout->setMargin(15);
 
-    this->setLayout(vLayout);
-
     connect(ackBtn,SIGNAL(clicked()), this, SLOT(onAckBtn()));
     connect(cleanBtn,SIGNAL(clicked()), this, SLOT(onCleanBtn()));
     connect(quitBtn,SIGNAL(clicked()), this, SLOT(onQuitBtn()));
 
+    this->setLayout(vLayout);
 }
 
 Login::~Login()
@@ -78,7 +77,7 @@ void Login::onAckBtn(){
     QString correctpwd="0";
     QString correctuser="10011006";
     if(user==correctuser&&pwd==correctpwd){
-        this->hide();
+        this->close();
         mainform *w=new mainform();
         w->show();
     }else{

@@ -37,9 +37,6 @@ addMark::addMark(QWidget *parent)
     ackBtn=new QPushButton;
     ackBtn->setText(tr("确认"));
     connect(ackBtn,SIGNAL(clicked()), this, SLOT(onAckBtn()));
-    quitBtn=new QPushButton;
-    quitBtn->setText(tr("退出"));
-    connect(quitBtn,SIGNAL(clicked()), this, SLOT(onQuitBtn()));
     cleanBtn=new QPushButton;
     cleanBtn->setText(tr("清空"));
     connect(cleanBtn,SIGNAL(clicked()), this, SLOT(onCleanBtn()));
@@ -54,9 +51,10 @@ addMark::addMark(QWidget *parent)
     gridLayout->addWidget(MpointEdit,2,1);
     gridLayout->addWidget(MsemesterLabel,3,0);
     gridLayout->addWidget(MsemesterBox,3,1);
-    gridLayout->addWidget(quitBtn,4,2);
-    gridLayout->addWidget(ackBtn,4,1);
     gridLayout->addWidget(cleanBtn,4,0);
+    gridLayout->addWidget(ackBtn,4,1);
+    gridLayout->setColumnStretch(0,1);
+    gridLayout->setColumnStretch(1,2);
 
     this->setLayout(gridLayout);
 }
@@ -64,10 +62,6 @@ addMark::addMark(QWidget *parent)
 addMark::~addMark()
 {
 
-}
-
-void addMark::onQuitBtn(){
-    this->close();
 }
 
 void addMark::onCleanBtn(){

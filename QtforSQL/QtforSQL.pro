@@ -22,7 +22,12 @@ SOURCES += main.cpp\
     linksql.cpp \
     addCourse.cpp \
     addGrade.cpp \
-    addFamily.cpp
+    addFamily.cpp \
+    appendInterface.cpp \
+    aboutInterface.cpp \
+    selectInterface.cpp \
+    deleteInterface.cpp \
+    updateInterface.cpp
 
 HEADERS  += \
     login.h \
@@ -32,7 +37,12 @@ HEADERS  += \
     addStudent.h \
     linksql.h \
     addGrade.h \
-    addFamily.h
+    addFamily.h \
+    appendInterface.h \
+    aboutInterface.h \
+    selectInterface.h \
+    deleteInterface.h \
+    updateInterface.h
 
 FORMS    +=
 

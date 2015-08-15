@@ -43,12 +43,10 @@ private:
 
     QPushButton *ackBtn;
     QPushButton *cleanBtn;
-    QPushButton *quitBtn;
 
     QGridLayout *gridLayout;
 private slots:
     void onAckBtn();
-    void onQuitBtn();
     void onCleanBtn();
 };
 

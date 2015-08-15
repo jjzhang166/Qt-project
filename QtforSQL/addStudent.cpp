@@ -67,10 +67,7 @@ addStudent::addStudent(QWidget *parent)
     ackBtn=new QPushButton;
     ackBtn->setText(tr("确认"));
     connect(ackBtn,SIGNAL(clicked()), this, SLOT(onAckBtn()));
-    quitBtn=new QPushButton;
-    quitBtn->setText(tr("退出"));
     cleanBtn=new QPushButton;
-    connect(quitBtn,SIGNAL(clicked()), this, SLOT(onQuitBtn()));
     cleanBtn->setText(tr("清空"));
     connect(cleanBtn,SIGNAL(clicked()), this, SLOT(onCleanBtn()));
 
@@ -94,19 +91,16 @@ addStudent::addStudent(QWidget *parent)
     gridLayout->addWidget(SgraduateEdit,7,1);
     gridLayout->addWidget(GnoLabel,8,0);
     gridLayout->addWidget(GnoEdit,8,1);
-    gridLayout->addWidget(quitBtn,9,2);
-    gridLayout->addWidget(ackBtn,9,1);
     gridLayout->addWidget(cleanBtn,9,0);
+    gridLayout->addWidget(ackBtn,9,1);
+    gridLayout->setColumnStretch(0,1);
+    gridLayout->setColumnStretch(1,2);
 
     this->setLayout(gridLayout);
 }
 
 addStudent::~addStudent(){
 
-}
-
-void addStudent::onQuitBtn(){
-    this->close();
 }
 
 void addStudent::onCleanBtn(){

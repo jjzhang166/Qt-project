@@ -10,7 +10,6 @@ LinkSql::~LinkSql(){
 
 bool LinkSql::isLinkToSql(){
     db = QSqlDatabase::addDatabase("QODBC");
-    //QString dsn = QString::fromLocal8Bit("Course");
     db.setDatabaseName("kcsj");
     db.setUserName("sa");
     db.setPassword("sa");

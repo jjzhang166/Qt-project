@@ -33,13 +33,11 @@ private:
     QLineEdit *SnoEdit;
 
     QPushButton *ackBtn;
-    QPushButton *quitBtn;
     QPushButton *cleanBtn;
 
     QGridLayout *gridLayout;
 private slots:
     void onAckBtn();
-    void onQuitBtn();
     void onCleanBtn();
 };
 
